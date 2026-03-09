@@ -107,16 +107,18 @@ DESCRIBE Empresa;
 CREATE TABLE Sensores(
 	Id INT PRIMARY KEY AUTO_INCREMENT,
     Umidade_Detectada INT,
-    Hectare VARCHAR(50) NOT NULL
+    Setor VARCHAR(50) NOT NULL
     );
+    
+ALTER TABLE Sensores RENAME COLUMN Setor TO Hectare;
 
 DESCRIBE Sensores;
 
 INSERT INTO Sensores (Umidade_Detectada, Hectare) VALUES
-(42, 'A1'),
-(45, 'A2'),
-(47, 'A3'),
-(39, 'A4'),
+(97, 'A1'),
+(95, 'A2'),
+(97, 'A3'),
+(99, 'A4'),
 (41, 'B1'),
 (44, 'B2'),
 (50, 'B3'),
@@ -125,14 +127,14 @@ INSERT INTO Sensores (Umidade_Detectada, Hectare) VALUES
 (36, 'C2'),
 (38, 'C3'),
 (40, 'C4'),
-(55, 'D1'),
-(53, 'D2'),
-(57, 'D3'),
+(65, 'D1'),
+(63, 'D2'),
+(67, 'D3'),
 (46, 'D4'),
-(48, 'E1'),
-(44, 'E2'),
-(60, 'E3'),
-(58, 'E4');
+(78, 'E1'),
+(74, 'E2'),
+(73, 'E3'),
+(72, 'E4');
 
 SELECT * FROM Sensores;
 
@@ -143,10 +145,11 @@ FROM Sensores;
 SELECT 
 	CONCAT('Setor ', Hectare, ' - Umidade: ', Umidade_Detectada, '% - ') as 'Umidade detectada',
     CASE
-	WHEN Umidade_Detectada < 40 THEN 'Necessita irrigação'
-	WHEN Umidade_Detectada BETWEEN 40 AND 55 THEN 'Umidade adequada'
+	WHEN Umidade_Detectada < 54 THEN 'Necessita irrigação'
+	WHEN Umidade_Detectada BETWEEN 55 AND 80 THEN 'Umidade adequada'
 	ELSE 'Solo muito úmido'
     END AS Status_Sensor
 FROM Sensores;
+
 
 
